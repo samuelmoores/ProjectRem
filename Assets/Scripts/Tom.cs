@@ -20,7 +20,6 @@ public class Tom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.destination = player.transform.position;
         animator.SetFloat("velocity", agent.velocity.magnitude);
     }
 }

@@ -42,8 +42,6 @@ public class Door : MonoBehaviour
         
         if(rotateDoor)
         {
-            Debug.Log("opening: " + DoorHinge.transform.rotation.eulerAngles.y);
-
             DoorHinge.transform.Rotate(0, Time.deltaTime * rotationSpeed, 0);
 
             if(DoorHinge.transform.rotation.eulerAngles.y > 350.0f)
