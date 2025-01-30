@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public float CameraMoveSpeed = 120.0f;
-    public GameObject CameraFollowObject;
+    public Transform CameraFollowObject;
     Vector3 FollorPOS;
     public float clampAngle = 80.0f;
     public float inputSensivity = 150.0f;
@@ -64,9 +64,13 @@ public class CameraController : MonoBehaviour
 
     void CameraUpdater()
     {
-        Transform target = CameraFollowObject.transform;    
+        Transform target = CameraFollowObject;    
 
         float step = CameraMoveSpeed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+
+        if ((target))
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+        }
     }
 }
