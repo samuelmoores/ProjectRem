@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     bool detachCamera = false;
     float respawnTimer = 4.0f;
     bool startRespawnTimer = false;
+    [HideInInspector] public bool inflictingDamage;
+    bool isSwinging = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -63,13 +66,19 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("falling", true);
         }
 
-        if(PlayerHealth.Alive())
+        if(PlayerHealth.Alive() && !isSwinging)
         {
             controller.Move(walkDirection * movementSpeed * Time.deltaTime);
         }
 
-        
-        if(startRespawnTimer)
+        if(Input.GetButtonDown("Jump") && !isSwinging)
+        {
+            animator.SetTrigger("swing");
+            isSwinging = true;
+
+        }
+
+        if (startRespawnTimer)
         {
             respawnTimer -= Time.deltaTime;
 
@@ -79,7 +88,6 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -90,7 +98,6 @@ public class PlayerMovement : MonoBehaviour
             fell = true;
         }
 
-        Debug.Log(other.gameObject.name);
 
         if(other.gameObject.name == "Hammer")
         {
@@ -104,6 +111,26 @@ public class PlayerMovement : MonoBehaviour
             other.gameObject.transform.localScale = Vector3.one;
 
             other.gameObject.transform.position = GameObject.Find("HandSocket").transform.position;
+
+            other.gameObject.GetComponent<BoxCollider>().isTrigger = true;
         }
     }
+
+    public void InflictDamage()
+    {
+        inflictingDamage = true;
+    }
+
+    public void EndDamage()
+    {
+        inflictingDamage = false;
+
+    }
+
+    public void EndSwing()
+    {
+        isSwinging = false;
+    }
+
+
 }
