@@ -42,7 +42,10 @@ public class Tom : MonoBehaviour
 
         transform.LookAt(player.transform);
 
-        transform.eulerAngles = new Vector3 (0.0f, transform.rotation.eulerAngles.y, 0.0f);
+        if(player.GetComponent<PlayerMovement>().fell)
+        {
+            transform.eulerAngles = new Vector3 (0.0f, transform.rotation.eulerAngles.y, 0.0f);
+        }
 
         if(chase)
         {

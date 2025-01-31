@@ -89,5 +89,21 @@ public class PlayerMovement : MonoBehaviour
             startRespawnTimer = true;
             fell = true;
         }
+
+        Debug.Log(other.gameObject.name);
+
+        if(other.gameObject.name == "Hammer")
+        {
+            other.gameObject.GetComponent<Hammer>().pickedUp = true;
+            animator.SetBool("hasHammer", true);
+            
+            other.gameObject.transform.SetParent(GameObject.Find("HandSocket").transform);
+
+            other.gameObject.transform.localPosition = Vector3.zero;
+            other.gameObject.transform.localRotation = Quaternion.identity;
+            other.gameObject.transform.localScale = Vector3.one;
+
+            other.gameObject.transform.position = GameObject.Find("HandSocket").transform.position;
+        }
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public float knifeSpawnTime;
     public Transform[] KnifeSpawnLocations;
     public GameObject KnifePrefab;
     GameObject SpawnedKnife;
@@ -20,6 +19,7 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.Find("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
+        knifeSpawnTimer = 1.0f;
     }
 
     // Update is called once per frame
@@ -32,7 +32,16 @@ public class GameManager : MonoBehaviour
             Transform location = KnifeSpawnLocations[index];
             location.position += new Vector3(0.0f, 20.0f, 0.0f);
             SpawnedKnife = GameObject.Instantiate(KnifePrefab, KnifeSpawnLocations[index++]);
-            knifeSpawnTimer = knifeSpawnTime;
+
+            if(index < 6)
+            {
+                knifeSpawnTimer = Random.Range(0.25f, 0.45f);
+            }
+            else
+            {
+                knifeSpawnTimer = Random.Range(0.25f, 2.0f);
+
+            }
         }
 
 
