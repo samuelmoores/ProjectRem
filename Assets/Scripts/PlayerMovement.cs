@@ -66,16 +66,22 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("falling", true);
         }
 
-        if(PlayerHealth.Alive() && !isSwinging)
+        if (PlayerHealth)
         {
-            controller.Move(walkDirection * movementSpeed * Time.deltaTime);
+            if (PlayerHealth.Alive() && !isSwinging)
+            {
+                controller.Move(walkDirection * movementSpeed * Time.deltaTime);
+            }
         }
 
-        if(Input.GetButtonDown("Jump") && !isSwinging)
+        if(GameObject.Find("Hammer"))
         {
-            animator.SetTrigger("swing");
-            isSwinging = true;
+            if(Input.GetButtonDown("Jump") && !isSwinging && GameObject.Find("Hammer").GetComponent<Hammer>().pickedUp)
+            {
+                animator.SetTrigger("swing");
+                isSwinging = true;
 
+            }
         }
 
         if (startRespawnTimer)

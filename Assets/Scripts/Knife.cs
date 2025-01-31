@@ -33,4 +33,9 @@ public class Knife : MonoBehaviour
         rb.excludeLayers = 0;
 
     }
+
+    public void GetExploded()
+    {
+        rb.AddForce(GameObject.Find("Player").transform.forward * 6000, ForceMode.Impulse);
+    }
 }

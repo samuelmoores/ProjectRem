@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.SceneManagement;
 
 public class Tom_Activation : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Tom_Activation : MonoBehaviour
     
     NavMeshAgent agent;
     GameObject Todd;
+
+    float loadLevelTimer = 5.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +32,13 @@ public class Tom_Activation : MonoBehaviour
             BedRoomLight.GetComponent<Light>().intensity += Time.deltaTime * 3.0f;
             BedRoomLight.GetComponent<Light>().range += Time.deltaTime * 0.00f;
 
+            loadLevelTimer -= Time.deltaTime;
+
+        }
+
+        if(loadLevelTimer < 0)
+        {
+            SceneManager.LoadScene(1);
         }
     }
 

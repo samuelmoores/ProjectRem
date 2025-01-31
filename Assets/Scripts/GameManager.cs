@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     int index;
     GameObject player;
     PlayerHealth playerHealth;
+    Tom tom;
     float gameResetTimer = 4.0f;
     float knifeSpawnTimer;
 
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
         knifeSpawnTimer = 1.0f;
+        tom = GameObject.Find("Tom").GetComponent<Tom>();
     }
 
     // Update is called once per frame
@@ -39,13 +41,24 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                knifeSpawnTimer = Random.Range(0.25f, 2.0f);
+                knifeSpawnTimer = Random.Range(0.25f, 1.0f);
 
             }
         }
+        else if(knifeSpawnTimer <= 0 && tom.Alive())
+        {
+            Vector3 SpawnLocation = player.transform.position + new Vector3(0.0f, 100.0f, 0.0f);
+            Quaternion spawnRotation = player.transform.rotation;
+
+            SpawnedKnife = GameObject.Instantiate(KnifePrefab, SpawnLocation, spawnRotation);
+
+            knifeSpawnTimer = 3.0f;
 
 
-        if(!playerHealth.Alive())
+        }
+
+
+        if (!playerHealth.Alive())
         {
             gameResetTimer -= Time.deltaTime;
         }

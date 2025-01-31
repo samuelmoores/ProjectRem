@@ -25,7 +25,6 @@ public class PlayerHealth : MonoBehaviour
 
     public void Kill()
     {
-        Debug.Log("Kill");
         dead = true;
         animator.SetBool("dead", true);
     }

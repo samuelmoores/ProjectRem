@@ -7,6 +7,7 @@ public class Hammer : MonoBehaviour
 {
     public bool pickedUp = false;
     PlayerMovement player;
+    Tom tom;
     float spin = 0.0f;
     int nums;
     float cooldownTimer = 1.0f;
@@ -16,6 +17,7 @@ public class Hammer : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        tom = GameObject.Find("Tom").GetComponent<Tom>();
     }
 
     // Update is called once per frame
@@ -34,7 +36,9 @@ public class Hammer : MonoBehaviour
     {
         if(other.gameObject.name == "Knife(Clone)" && player.inflictingDamage && cooldownTimer < 0.0f)
         {
-            Debug.Log("Hammer hit knife " + nums++ + " times");
+            other.gameObject.GetComponent<Rigidbody>().freezeRotation = false;
+            other.gameObject.GetComponent<Knife>().GetExploded();
+            tom.Damage();
             cooldownTimer = 1.0f;
         }
     }

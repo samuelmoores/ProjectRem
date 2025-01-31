@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.6490744, g: 0.68055356, b: 0.735849, a: 1}
+  m_FogColor: {r: 0.8254717, g: 0.8889365, b: 1, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.027
   m_LinearFogStart: 0
@@ -903,31 +903,31 @@ PrefabInstance:
       objectReference: {fileID: 1945362363}
     - target: {fileID: 1008043748222062757, guid: 5570896b1797add4fa362ebc8e890bcd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.74
+      value: -15.38
       objectReference: {fileID: 0}
     - target: {fileID: 1008043748222062757, guid: 5570896b1797add4fa362ebc8e890bcd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.74
+      value: 3.343
       objectReference: {fileID: 0}
     - target: {fileID: 1008043748222062757, guid: 5570896b1797add4fa362ebc8e890bcd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -19.88
+      value: -23.3
       objectReference: {fileID: 0}
     - target: {fileID: 1008043748222062757, guid: 5570896b1797add4fa362ebc8e890bcd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99016964
       objectReference: {fileID: 0}
     - target: {fileID: 1008043748222062757, guid: 5570896b1797add4fa362ebc8e890bcd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1008043748222062757, guid: 5570896b1797add4fa362ebc8e890bcd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.13987194
       objectReference: {fileID: 0}
     - target: {fileID: 1008043748222062757, guid: 5570896b1797add4fa362ebc8e890bcd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1008043748222062757, guid: 5570896b1797add4fa362ebc8e890bcd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -935,7 +935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1008043748222062757, guid: 5570896b1797add4fa362ebc8e890bcd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 16.081
       objectReference: {fileID: 0}
     - target: {fileID: 1008043748222062757, guid: 5570896b1797add4fa362ebc8e890bcd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1278,7 +1278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8018963439702067607, guid: d1d034c8b02b36545b8db39a7b93a72c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.11
+      value: -15.47
       objectReference: {fileID: 0}
     - target: {fileID: 8018963439702067607, guid: d1d034c8b02b36545b8db39a7b93a72c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1286,7 +1286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8018963439702067607, guid: d1d034c8b02b36545b8db39a7b93a72c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.27
+      value: -23.54
       objectReference: {fileID: 0}
     - target: {fileID: 8018963439702067607, guid: d1d034c8b02b36545b8db39a7b93a72c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1636,7 +1636,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.8392157, g: 0.90971947, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -3947,9 +3947,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3035608602465568333, guid: c72b2fef744225347a860b98f6f94d1b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e7b7ff11ae73d2d4ba7304d64de1daf2, type: 2}
+    - target: {fileID: -8140499575222096, guid: c72b2fef744225347a860b98f6f94d1b, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c72b2fef744225347a860b98f6f94d1b, type: 3}
       propertyPath: m_Name
       value: Shack
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c72b2fef744225347a860b98f6f94d1b, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
