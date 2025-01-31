@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class Knife : MonoBehaviour
 {
+    Rigidbody rb;
+    float dropTimer;
+    bool stuckInTree;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        dropTimer = Random.Range(0.0f, 3.0f);
+        rb = GetComponent<Rigidbody>();
+        rb.AddForce((transform.up) * Random.Range(-5000, -7000), ForceMode.Impulse);
+        stuckInTree = false;
+
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.CompareTag("Player") && !stuckInTree)
+        {
+            GameObject.Find("Player").GetComponent<PlayerHealth>().Kill();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        stuckInTree = true;
+        rb.excludeLayers = 0;
+
     }
 }

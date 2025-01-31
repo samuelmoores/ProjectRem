@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     Camera cam;
     Animator animator;
     Transform CameraDetachLocation;
+    PlayerHealth PlayerHealth;
     float startTimer = 1.0f;
     bool detachCamera = false;
 
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         animator = GetComponent<Animator>();
+        PlayerHealth = GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame
@@ -32,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("speed", walkDirection.magnitude);
 
-        if (walkDirection != Vector3.zero)
+        if (walkDirection != Vector3.zero && PlayerHealth.Alive())
         {
             walkDirection = Quaternion.AngleAxis(cam.transform.rotation.eulerAngles.y, Vector3.up) * walkDirection;
             walkDirection.Normalize();
@@ -56,7 +58,10 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("falling", true);
         }
 
-        controller.Move(walkDirection * movementSpeed * Time.deltaTime);
+        if(PlayerHealth.Alive())
+        {
+            controller.Move(walkDirection * movementSpeed * Time.deltaTime);
+        }
 
 
     }
