@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Compilation;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float movementSpeed;
+    public bool fell = false;
 
     CharacterController controller;
     Camera cam;
@@ -14,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     PlayerHealth PlayerHealth;
     float startTimer = 1.0f;
     bool detachCamera = false;
+    float respawnTimer = 4.0f;
+    bool startRespawnTimer = false;
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +68,26 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(walkDirection * movementSpeed * Time.deltaTime);
         }
 
+        
+        if(startRespawnTimer)
+        {
+            respawnTimer -= Time.deltaTime;
 
+            if(respawnTimer < 0.0f)
+            {
+                SceneManager.LoadScene(1);
+            }
+
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Respawn"))
+        {
+            startRespawnTimer = true;
+            fell = true;
+        }
     }
 }

@@ -25,6 +25,9 @@ public class CameraController : MonoBehaviour
     public float rotX;
     public float rotY;
 
+    public bool playerFell = false;
+    PlayerMovement player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,27 +37,37 @@ public class CameraController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float inputX = Input.GetAxis("RightStickHorizontal");
-        float inputY = Input.GetAxis("RightStickVertical");
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y");
+        if(!player.fell)
+        {
+            float inputX = Input.GetAxis("RightStickHorizontal");
+            float inputY = Input.GetAxis("RightStickVertical");
+            mouseX = Input.GetAxis("Mouse X");
+            mouseY = Input.GetAxis("Mouse Y");
 
-        finalInputX = inputX + mouseX;
-        finalInputZ = inputY + mouseY;
+            finalInputX = inputX + mouseX;
+            finalInputZ = inputY + mouseY;
 
-        rotY += finalInputX * inputSensivity * Time.deltaTime;
-        rotX += finalInputZ * inputSensivity * Time.deltaTime;
+            rotY += finalInputX * inputSensivity * Time.deltaTime;
+            rotX += finalInputZ * inputSensivity * Time.deltaTime;
 
-        rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
+            rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
 
-        Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
-        transform.rotation = localRotation;
+            Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
+            transform.rotation = localRotation;
 
+        }
+        else
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(player.gameObject.transform.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 2.0f * Time.deltaTime);
+        }
     }
 
     private void LateUpdate()
